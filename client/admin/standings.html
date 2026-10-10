@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#A200C7" />
+  <title>Standings — BOTOLA D2 Admin</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body>
+
+  <div class="ad-layout" id="adLayout">
+    <aside class="ad-sidebar" id="adSidebar"></aside>
+    <div class="ad-sidebar-overlay" id="adSidebarOverlay"></div>
+
+    <div class="ad-main">
+      <header class="ad-topbar" id="adTopbar"></header>
+
+      <div class="ad-content">
+        <div class="ad-page-head">
+          <div>
+            <h1 class="ad-page-title">Standings</h1>
+            <p class="ad-page-sub">Auto-computed + manual adjustments</p>
+          </div>
+          <div class="ad-page-actions">
+            <button class="ad-btn ad-btn-ghost ad-btn-sm" id="refreshBtn">
+              <i class="fa-solid fa-rotate"></i> Refresh
+            </button>
+          </div>
+        </div>
+
+        <div class="ad-card">
+          <div class="ad-card-body" style="padding:14px 20px;background:rgba(162,0,199,0.06);border-bottom:1px solid var(--ad-border)">
+            <div style="display:flex;align-items:center;gap:12px;font-size:13px;color:var(--bd-text-muted)">
+              <i class="fa-solid fa-circle-info" style="color:var(--bd-primary);font-size:15px"></i>
+              <span>
+                The base standings are computed automatically. You can <strong style="color:#fff">adjust points, played, goals for/against</strong>
+                for any team. Adjustments are applied on top of computed values.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ad-card">
+          <div class="ad-card-head">
+            <h2 class="ad-card-title"><i class="fa-solid fa-ranking-star"></i> Standings Table</h2>
+            <span style="color:var(--bd-text-dim);font-size:12px" id="countLabel">—</span>
+          </div>
+          <div class="ad-table-wrap">
+            <table class="ad-table">
+              <thead>
+                <tr>
+                  <th style="width:50px">#</th>
+                  <th>Team</th>
+                  <th>P</th>
+                  <th>W</th>
+                  <th>D</th>
+                  <th>L</th>
+                  <th>GF</th>
+                  <th>GA</th>
+                  <th>GD</th>
+                  <th style="text-align:right">PTS</th>
+                  <th style="text-align:right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="standingsBody">
+                <tr><td colspan="11"><div class="ad-skeleton" style="height:52px"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ ADJUSTMENT MODAL ============ -->
+  <div class="ad-modal" id="adjustModal">
+    <div class="ad-modal-backdrop" data-modal-close></div>
+    <div class="ad-modal-panel">
+      <div class="ad-modal-head">
+        <h3 class="ad-modal-title" id="adjustTitle">Adjust Team</h3>
+        <button class="ad-modal-close" data-modal-close><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="adjustForm" class="ad-form" style="padding:22px">
+        <input type="hidden" name="team_id" id="adjustTeamId" />
+
+        <div style="padding:12px 14px;background:rgba(162,0,199,0.08);border:1px solid rgba(162,0,199,0.25);border-radius:10px;margin-bottom:16px;font-size:13px;color:var(--bd-text-muted)">
+          <i class="fa-solid fa-info-circle" style="color:var(--bd-primary)"></i>
+          Adjustments are <strong style="color:#fff">added on top of</strong> the auto-computed values.
+          Leave a field empty or 0 for no change.
+        </div>
+
+        <div class="ad-form-grid-3">
+          <div class="ad-field">
+            <label>Points <span class="hint">(+/-)</span></label>
+            <input type="number" name="points_adjustment" value="0" />
+          </div>
+          <div class="ad-field">
+            <label>Played <span class="hint">(+/-)</span></label>
+            <input type="number" name="played_adjustment" value="0" />
+          </div>
+          <div class="ad-field">
+            <label>Wins <span class="hint">(+/-)</span></label>
+            <input type="number" name="wins_adjustment" value="0" />
+          </div>
+        </div>
+
+        <div class="ad-form-grid-3">
+          <div class="ad-field">
+            <label>Draws <span class="hint">(+/-)</span></label>
+            <input type="number" name="draws_adjustment" value="0" />
+          </div>
+          <div class="ad-field">
+            <label>Losses <span class="hint">(+/-)</span></label>
+            <input type="number" name="losses_adjustment" value="0" />
+          </div>
+          <div></div>
+        </div>
+
+        <div class="ad-form-grid">
+          <div class="ad-field">
+            <label>Goals For <span class="hint">(+/-)</span></label>
+            <input type="number" name="gf_adjustment" value="0" />
+          </div>
+          <div class="ad-field">
+            <label>Goals Against <span class="hint">(+/-)</span></label>
+            <input type="number" name="ga_adjustment" value="0" />
+          </div>
+        </div>
+
+        <div class="ad-field">
+          <label>Notes <span class="hint">(optional)</span></label>
+          <input type="text" name="notes" maxlength="255" placeholder="e.g. 3 points deducted for violation" />
+        </div>
+
+        <div style="display:flex;justify-content:space-between;gap:10px;padding-top:10px;border-top:1px solid var(--ad-border);margin-top:6px">
+          <button type="button" class="ad-btn ad-btn-ghost" id="clearAdjBtn" style="display:none">
+            <i class="fa-solid fa-eraser"></i> Clear adjustment
+          </button>
+          <div style="display:flex;gap:10px;margin-left:auto">
+            <button type="button" class="ad-btn ad-btn-ghost" data-modal-close>Cancel</button>
+            <button type="submit" class="ad-btn ad-btn-primary" id="saveAdjBtn">
+              <i class="fa-solid fa-floppy-disk"></i> Save
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="ad-toast-wrap" id="adToastWrap"></div>
+
+  <script src="/js/config.js"></script>
+  <script src="/js/admin/admin-api.js"></script>
+  <script src="/js/admin/admin-shell.js"></script>
+  <script>
+    (async () => {
+      const user = await AdminShell.mount('standings', 'Standings');
+      if (!user) return;
+      loadStandings();
+      document.getElementById('refreshBtn').addEventListener('click', loadStandings);
+    })();
+
+    let currentTeamId = null;
+
+    async function loadStandings() {
+      const tbody = document.getElementById('standingsBody');
+      AdUtil.showTableSkeleton(tbody, 11, 8);
+
+      try {
+        const res = await fetch('/api/standings/admin?_t=' + Date.now(), {
+          headers: { 'Authorization': 'Bearer ' + localStorage.getItem('bd_access_token') }
+        }).then(r => r.json());
+
+        const rows = res?.data || [];
+        const countLabel = document.getElementById('countLabel');
+        if (countLabel) countLabel.textContent = `${rows.length} teams`;
+
+        if (!rows.length) {
+          tbody.innerHTML = AdUtil.emptyRow(11, 'No standings data yet');
+          return;
+        }
+
+        tbody.innerHTML = rows.map(r => {
+          const posClass = r.position === 1 ? 'gold' : r.position <= 2 ? 'standard' : '';
+          const gdClass = r.gd > 0 ? 'color:var(--bd-success)' : r.gd < 0 ? 'color:var(--bd-danger)' : '';
+          const hasAdj = r.has_adjustment;
+
+          return `
+            <tr ${hasAdj ? 'style="background:rgba(255,200,87,0.05)"' : ''}>
+              <td style="text-align:center">
+                <span class="ad-pill ${posClass}">${r.position}</span>
+              </td>
+              <td>
+                <div class="ad-logo-cell">
+                  ${r.team_logo
+                    ? `<img src="${AdUtil.esc(r.team_logo.startsWith('http') ? r.team_logo : window.BD_CONFIG.ASSETS_BASE + r.team_logo)}" alt="">`
+                    : AdUtil.teamLogo({ name: r.team_name, short_name: r.team_short_name })}
+                  <span class="name">${AdUtil.esc(r.team_name)}</span>
+                  ${hasAdj ? `<i class="fa-solid fa-asterisk" style="color:var(--bd-gold);font-size:10px" title="Has manual adjustment"></i>` : ''}
+                </div>
+              </td>
+              <td>${r.played}</td>
+              <td>${r.wins}</td>
+              <td>${r.draws}</td>
+              <td>${r.losses}</td>
+              <td>${r.gf}</td>
+              <td>${r.ga}</td>
+              <td style="${gdClass};font-weight:700">${r.gd > 0 ? '+' : ''}${r.gd}</td>
+              <td style="text-align:right;font-weight:900;color:var(--bd-primary);font-size:15px">${r.points}</td>
+              <td>
+                <div class="ad-row-actions">
+                  <button class="ad-row-btn" data-adjust="${r.team_id}" title="Adjust">
+                    <i class="fa-solid fa-sliders"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          `;
+        }).join('');
+
+        // Bind adjust buttons
+        document.querySelectorAll('[data-adjust]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const tid = parseInt(btn.getAttribute('data-adjust'), 10);
+            const row = rows.find(x => x.team_id === tid);
+            if (row) openAdjustModal(row);
+          });
+        });
+      } catch (err) {
+        tbody.innerHTML = AdUtil.emptyRow(11, 'Failed to load: ' + (err.message || ''));
+      }
+    }
+
+    function openAdjustModal(row) {
+      currentTeamId = row.team_id;
+      const form = document.getElementById('adjustForm');
+      form.reset();
+
+      document.getElementById('adjustTitle').textContent = `Adjust — ${row.team_name}`;
+      document.getElementById('adjustTeamId').value = row.team_id;
+
+      const adj = row.adjustment;
+      if (adj) {
+        form.points_adjustment.value = adj.points_adjustment || 0;
+        form.played_adjustment.value = adj.played_adjustment || 0;
+        form.wins_adjustment.value = adj.wins_adjustment || 0;
+        form.draws_adjustment.value = adj.draws_adjustment || 0;
+        form.losses_adjustment.value = adj.losses_adjustment || 0;
+        form.gf_adjustment.value = adj.gf_adjustment || 0;
+        form.ga_adjustment.value = adj.ga_adjustment || 0;
+        form.notes.value = adj.notes || '';
+        document.getElementById('clearAdjBtn').style.display = '';
+      } else {
+        form.points_adjustment.value = 0;
+        form.played_adjustment.value = 0;
+        form.wins_adjustment.value = 0;
+        form.draws_adjustment.value = 0;
+        form.losses_adjustment.value = 0;
+        form.gf_adjustment.value = 0;
+        form.ga_adjustment.value = 0;
+        form.notes.value = '';
+        document.getElementById('clearAdjBtn').style.display = 'none';
+      }
+
+      AdUtil.openModal('adjustModal');
+    }
+
+    // Save adjustment
+    document.getElementById('adjustForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.currentTarget;
+      const teamId = form.team_id.value;
+
+      const payload = {
+        points_adjustment: parseInt(form.points_adjustment.value, 10) || 0,
+        played_adjustment: parseInt(form.played_adjustment.value, 10) || 0,
+        wins_adjustment: parseInt(form.wins_adjustment.value, 10) || 0,
+        draws_adjustment: parseInt(form.draws_adjustment.value, 10) || 0,
+        losses_adjustment: parseInt(form.losses_adjustment.value, 10) || 0,
+        gf_adjustment: parseInt(form.gf_adjustment.value, 10) || 0,
+        ga_adjustment: parseInt(form.ga_adjustment.value, 10) || 0,
+        notes: form.notes.value.trim()
+      };
+
+      const btn = document.getElementById('saveAdjBtn');
+      const orig = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Saving...';
+
+      try {
+        const res = await fetch('/api/standings/adjustments/' + teamId, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('bd_access_token')
+          },
+          body: JSON.stringify(payload)
+        }).then(r => r.json());
+
+        if (!res.success) throw new Error(res.message || 'Error');
+
+        AdToast.success('Adjustment saved');
+        AdUtil.closeModal('adjustModal');
+        loadStandings();
+      } catch (err) {
+        AdToast.error(err.message || 'Failed');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = orig;
+      }
+    });
+
+    // Clear adjustment
+    document.getElementById('clearAdjBtn').addEventListener('click', async () => {
+      if (!currentTeamId) return;
+      const ok = await AdUtil.confirmDialog('Clear adjustment?', 'Standings will return to auto-computed values.', 'Clear');
+      if (!ok) return;
+
+      try {
+        const res = await fetch('/api/standings/adjustments/' + currentTeamId, {
+          method: 'DELETE',
+          headers: { 'Authorization': 'Bearer ' + localStorage.getItem('bd_access_token') }
+        }).then(r => r.json());
+
+        if (!res.success) throw new Error(res.message);
+
+        AdToast.success('Adjustment cleared');
+        AdUtil.closeModal('adjustModal');
+        loadStandings();
+      } catch (err) {
+        AdToast.error(err.message || 'Failed');
+      }
+    });
+  </script>
+</body>
+</html>

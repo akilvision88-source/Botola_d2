@@ -1,0 +1,16 @@
+node_modules/
+.env
+.env.local
+uploads/*.log
+uploads/teams/*
+uploads/avatars/*
+uploads/thumbnails/*
+uploads/stadiums/*
+!uploads/.gitkeep
+!uploads/teams/.gitkeep
+!uploads/avatars/.gitkeep
+!uploads/thumbnails/.gitkeep
+!uploads/stadiums/.gitkeep
+npm-debug.log*
+.DS_Store
+*.log

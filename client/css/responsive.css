@@ -1,0 +1,1305 @@
+/* =========================================================
+   BOTOLA D2 — responsive.css (v3 — FINAL)
+   Mobile-first, cards stack vertically, tables become cards
+   ========================================================= */
+
+/* =========================================================
+   BASE RESET
+   ========================================================= */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img, video, iframe {
+  max-width: 100%;
+}
+
+input, select, textarea {
+  font-size: 16px; /* iOS: prevent zoom */
+}
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+@media (max-width: 600px) {
+  .container-xl {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+@media (max-width: 768px) {
+  body { font-size: 14px; }
+  h1 { font-size: 24px !important; letter-spacing: -0.5px !important; }
+  h2 { font-size: 20px !important; }
+  h3 { font-size: 17px !important; }
+  .bd-section { padding: 40px 0 !important; }
+  .bd-section-title { font-size: 18px !important; }
+  .bd-section-subtitle { font-size: 12.5px !important; }
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+@media (max-width: 1024px) {
+  .bd-nav { display: none !important; }
+  .bd-burger { display: flex !important; }
+}
+
+@media (max-width: 768px) {
+  :root { --bd-header-h: 64px; }
+  .bd-header-inner { gap: 12px; }
+  .bd-logo-img { height: 34px !important; }
+  .bd-lang { display: none; }
+}
+
+@media (max-width: 480px) {
+  .bd-auth-actions { display: none !important; }
+}
+
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
+@media (max-width: 480px) {
+  .bd-mobile-menu {
+    width: 100vw !important;
+    border-radius: 0 !important;
+  }
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+@media (max-width: 768px) {
+  .bd-hero {
+    min-height: 440px !important;
+    padding: 24px 0 36px !important;
+  }
+  .bd-hero-title {
+    font-size: clamp(34px, 10vw, 52px) !important;
+    letter-spacing: -1.5px !important;
+  }
+  .bd-hero-title-bottom { letter-spacing: -2px !important; }
+  .bd-hero-subtitle { font-size: 14px !important; }
+
+  .bd-hero-actions {
+    gap: 8px !important;
+    margin-bottom: 28px !important;
+  }
+  .bd-hero-actions .btn-bd {
+    flex: 1 1 100% !important;
+    padding: 12px 16px !important;
+    font-size: 12px !important;
+    justify-content: center;
+  }
+
+  .bd-hero-stats {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 12px !important;
+  }
+  .bd-hero-stat-num { font-size: 20px !important; }
+  .bd-hero-stat-label { font-size: 9.5px !important; }
+}
+
+/* =========================================================
+   TWO COLUMN → STACK
+   ========================================================= */
+@media (max-width: 1024px) {
+  .bd-two-col {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+  }
+}
+
+/* =========================================================
+   HOME GRID 5
+   ========================================================= */
+@media (max-width: 1400px) {
+  .home-grid-5 > * {
+    flex: 0 0 calc((100% - 42px) / 4) !important;
+    max-width: calc((100% - 42px) / 4) !important;
+  }
+}
+@media (max-width: 1100px) {
+  .home-grid-5 > * {
+    flex: 0 0 calc((100% - 28px) / 3) !important;
+    max-width: calc((100% - 28px) / 3) !important;
+  }
+}
+@media (max-width: 800px) {
+  .home-grid-5 > * {
+    flex: 0 0 calc((100% - 14px) / 2) !important;
+    max-width: calc((100% - 14px) / 2) !important;
+  }
+}
+@media (max-width: 520px) {
+  .home-grid-5 {
+    gap: 10px !important;
+    padding: 4px 0 12px !important;
+  }
+  .home-grid-5 > * {
+    flex: 0 0 85% !important;
+    max-width: 85% !important;
+  }
+}
+
+/* =========================================================
+   MATCH CARDS — VERTICAL LAYOUT (مهم!)
+   ========================================================= */
+@media (max-width: 768px) {
+
+  /* Grid → عمود واحد */
+  .bd-grid-live,
+  .bd-grid-upcoming {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* البطاقة نفسها */
+  .match-card,
+  .match-card-compact {
+    padding: 16px !important;
+    border-radius: 16px !important;
+    min-height: auto !important;
+  }
+
+  /* الرأس */
+  .match-card-head,
+  .match-card-compact .match-card-head {
+    margin-bottom: 14px !important;
+    font-size: 11px !important;
+    gap: 10px !important;
+  }
+
+  .match-competition,
+  .match-card-compact .match-competition {
+    font-size: 10px !important;
+  }
+
+  /* الشبكة: فريق | نتيجة | فريق */
+  .match-teams,
+  .match-card-compact .match-teams {
+    grid-template-columns: 1fr auto 1fr !important;
+    gap: 12px !important;
+    margin-bottom: 14px !important;
+  }
+
+  /* كل فريق */
+  .match-team,
+  .match-card-compact .match-team {
+    gap: 8px !important;
+  }
+
+  /* الشعار */
+  .match-team-logo,
+  .match-card-compact .match-team-logo {
+    width: 52px !important;
+    height: 52px !important;
+    padding: 8px !important;
+  }
+
+  /* اسم الفريق — مهم: يظهر كاملاً في سطرين */
+  .match-team-name,
+  .match-card-compact .match-team-name {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    line-height: 1.3 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    text-align: center !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    word-break: break-word !important;
+  }
+
+  /* النتيجة */
+  .match-score,
+  .match-card-compact .match-score {
+    min-width: 70px !important;
+  }
+
+  .match-score-line,
+  .match-card-compact .match-score-line {
+    font-size: 26px !important;
+    gap: 6px !important;
+  }
+
+  .match-minute,
+  .match-card-compact .match-minute {
+    font-size: 11px !important;
+  }
+
+  .match-minutes-upcoming,
+  .match-card-compact .match-minutes-upcoming {
+    font-size: 22px !important;
+  }
+
+  .match-date-small,
+  .match-card-compact .match-date-small {
+    font-size: 10.5px !important;
+  }
+
+  /* Meta (الملعب، المدينة) */
+  .match-meta,
+  .match-card-compact .match-meta {
+    font-size: 11px !important;
+    padding: 10px 0 !important;
+    margin-bottom: 14px !important;
+    gap: 10px !important;
+  }
+
+  /* الأزرار: عمودية أو شبكة */
+  .match-actions,
+  .match-card-compact .match-actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 44px !important;
+    gap: 8px !important;
+  }
+
+  .match-actions .btn-bd,
+  .match-card-compact .match-actions .btn-bd {
+    padding: 11px 10px !important;
+    font-size: 11.5px !important;
+    min-height: 44px !important;
+    border-radius: 10px !important;
+  }
+
+  .match-actions .btn-bd-icon,
+  .match-card-compact .match-actions .btn-bd-icon {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+}
+
+/* على الجوال الصغير جداً */
+@media (max-width: 400px) {
+  .match-card-compact .match-team-name {
+    font-size: 10px !important;
+  }
+  .match-card-compact .match-team-logo {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  .match-card-compact .match-score-line {
+    font-size: 22px !important;
+  }
+  .match-card-compact .match-actions {
+    grid-template-columns: 1fr 1fr 40px !important;
+  }
+}
+
+/* =========================================================
+   RESULTS PAGE — جدول النتائج → بطاقات
+   ========================================================= */
+@media (max-width: 768px) {
+
+  /* إلغاء min-width */
+  .results-table-wrap {
+    overflow: visible !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .results-table {
+    min-width: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    background: transparent !important;
+  }
+
+  .results-table thead {
+    display: none !important;
+  }
+
+  .results-table tbody {
+    display: block !important;
+  }
+
+  /* كل صف → بطاقة */
+  .results-table tr,
+  .results-table .result-tr {
+    display: block !important;
+    background: var(--bd-card) !important;
+    border: 1px solid var(--bd-border) !important;
+    border-radius: 16px !important;
+    padding: 0 !important;
+    margin-bottom: 12px !important;
+    overflow: hidden !important;
+    transition: border-color 0.2s;
+  }
+
+  .results-table tr:hover,
+  .results-table .result-tr:hover {
+    border-color: rgba(162, 0, 199, 0.4) !important;
+  }
+
+  /* كل خلية */
+  .results-table td {
+    display: block !important;
+    padding: 0 !important;
+    border: none !important;
+    width: 100% !important;
+  }
+
+  /* ─── 1. Date cell (رأس البطاقة) ─── */
+  .results-table .result-date-cell {
+    background: linear-gradient(90deg, rgba(162, 0, 199, 0.15), transparent) !important;
+    padding: 12px 16px !important;
+    border-bottom: 1px solid var(--bd-border) !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    text-align: left !important;
+  }
+
+  .results-table .result-date-cell .rd-day {
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    color: #fff !important;
+  }
+
+  .results-table .result-date-cell .rd-time {
+    font-size: 12px !important;
+    color: var(--bd-primary) !important;
+    font-weight: 700 !important;
+    margin-top: 0 !important;
+  }
+
+  /* ─── 2. Match cell (وسط البطاقة) ─── */
+  .results-table .result-match-cell {
+    padding: 16px !important;
+    min-width: 0 !important;
+  }
+
+  .results-table .rm-competition {
+    font-size: 10px !important;
+    margin-bottom: 12px !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  .results-table .rm-round {
+    font-size: 9.5px !important;
+  }
+
+  /* صف الفريقين */
+  .results-table .rm-row {
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr !important;
+    gap: 10px !important;
+    align-items: center !important;
+  }
+
+  /* كل فريق */
+  .results-table .rm-team-side {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 8px !important;
+    text-align: center !important;
+    min-width: 0 !important;
+  }
+
+  .results-table .rm-team-side.home,
+  .results-table .rm-team-side.away {
+    flex-direction: column !important;
+  }
+
+  /* شعار الفريق */
+  .results-table .rm-team-logo {
+    width: 44px !important;
+    height: 44px !important;
+    padding: 6px !important;
+    order: -1 !important; /* الشعار فوق الاسم */
+  }
+
+  /* اسم الفريق */
+  .results-table .rm-team-name {
+    font-size: 11.5px !important;
+    font-weight: 700 !important;
+    line-height: 1.3 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    word-break: break-word !important;
+  }
+
+  /* النتيجة */
+  .results-table .rm-score-mid {
+    padding: 10px 14px !important;
+    min-width: 78px !important;
+    border-radius: 12px !important;
+  }
+
+  .results-table .rm-score-num {
+    font-size: 20px !important;
+    min-width: 18px !important;
+  }
+
+  .results-table .rm-score-sep {
+    font-size: 18px !important;
+  }
+
+  /* ─── 3. Venue cell ─── */
+  .results-table .result-venue-cell {
+    padding: 10px 16px !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    border-top: 1px solid var(--bd-border) !important;
+    display: flex !important;
+    gap: 12px !important;
+    flex-wrap: wrap !important;
+    font-size: 11.5px !important;
+    justify-content: flex-start !important;
+  }
+
+  .results-table .result-venue-cell .rv-line {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+  }
+
+  /* ─── 4. Referee cell ─── */
+  .results-table .result-referee-cell {
+    padding: 8px 16px !important;
+    border-top: 1px solid var(--bd-border) !important;
+    font-size: 11.5px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    justify-content: flex-start !important;
+  }
+
+  /* ─── 5. Actions cell ─── */
+  .results-table .result-actions-cell {
+    padding: 12px 16px !important;
+    border-top: 1px solid var(--bd-border) !important;
+    text-align: center !important;
+  }
+
+  .results-table .result-actions {
+    display: flex !important;
+    gap: 8px !important;
+    justify-content: center !important;
+    margin-bottom: 0 !important;
+  }
+
+  .results-table .result-action-btn {
+    width: auto !important;
+    height: 40px !important;
+    padding: 0 16px !important;
+    font-size: 12px !important;
+    gap: 6px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .results-table .result-action-btn i {
+    margin-right: 4px;
+  }
+}
+
+/* =========================================================
+   STANDINGS PAGE — جدول الترتيب → بطاقات
+   ========================================================= */
+@media (max-width: 768px) {
+
+  .standings-table-wrap {
+    overflow: visible !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .standings-table {
+    min-width: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    background: transparent !important;
+  }
+
+  .standings-table thead {
+    display: none !important;
+  }
+
+  .standings-table tbody {
+    display: block !important;
+  }
+
+  /* كل صف → بطاقة */
+  .standings-table tr,
+  .standings-table .st-row {
+    display: grid !important;
+    grid-template-columns: 48px 1fr auto !important;
+    grid-template-rows: auto auto auto !important;
+    gap: 8px 12px !important;
+    background: var(--bd-card) !important;
+    border: 1px solid var(--bd-border) !important;
+    border-left: 4px solid transparent !important;
+    border-radius: 14px !important;
+    padding: 14px 16px !important;
+    margin-bottom: 10px !important;
+    align-items: center !important;
+  }
+
+  /* ألوان الحدود حسب المركز */
+  .standings-table tr.pos-champion { border-left-color: #FFC857 !important; }
+  .standings-table tr.pos-promo    { border-left-color: var(--bd-primary) !important; }
+  .standings-table tr.pos-safe     { border-left-color: #22C55E !important; }
+  .standings-table tr.pos-releg    { border-left-color: #EF4444 !important; }
+
+  /* ─── Position ─── */
+  .standings-table td.st-pos {
+    grid-column: 1 !important;
+    grid-row: 1 / span 3 !important;
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 50% !important;
+    background: linear-gradient(135deg, rgba(162, 0, 199, 0.25), rgba(162, 0, 199, 0.05)) !important;
+    color: #fff !important;
+    font-weight: 900 !important;
+    font-size: 18px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    text-align: center !important;
+  }
+
+  /* إزالة الشريط الجانبي القديم */
+  .standings-table td.st-pos::before {
+    display: none !important;
+  }
+
+  .standings-table tr.pos-champion td.st-pos {
+    background: linear-gradient(135deg, #FFD97A, #FFC857) !important;
+    color: #1a1300 !important;
+    box-shadow: 0 0 20px rgba(255, 200, 87, 0.4) !important;
+  }
+
+  .standings-table tr.pos-releg td.st-pos {
+    background: linear-gradient(135deg, #EF4444, #b91c1c) !important;
+  }
+
+  /* ─── Team ─── */
+  .standings-table td.st-team {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    padding: 0 !important;
+    text-align: left !important;
+    border: none !important;
+  }
+
+  .standings-table .st-team-inner {
+    gap: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .standings-table .standing-logo {
+    width: 32px !important;
+    height: 32px !important;
+    padding: 4px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .standings-table .st-team-name {
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    color: #fff !important;
+    line-height: 1.3 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    word-break: break-word !important;
+  }
+
+  /* ─── PTS (النقاط) ─── */
+  .standings-table td.st-pts {
+    grid-column: 3 !important;
+    grid-row: 1 !important;
+    font-size: 20px !important;
+    font-weight: 900 !important;
+    color: var(--bd-primary) !important;
+    padding: 0 !important;
+    text-align: right !important;
+    border: none !important;
+    position: relative !important;
+    padding-right: 2px !important;
+  }
+
+  .standings-table td.st-pts::after {
+    content: 'pts';
+    display: block;
+    font-size: 8px !important;
+    color: var(--bd-text-dim) !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: -4px;
+  }
+
+  /* ─── Stats row (P W D L GF GA GD) ─── */
+  .standings-table td:not(.st-pos):not(.st-team):not(.st-pts) {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 3px !important;
+    padding: 0 !important;
+    font-size: 11px !important;
+    color: var(--bd-text-muted) !important;
+    border: none !important;
+    background: transparent !important;
+    font-weight: 600 !important;
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    flex-wrap: wrap !important;
+  }
+
+  /* نجمع كل الإحصائيات في صف واحد */
+  .standings-table td:nth-child(3),
+  .standings-table td:nth-child(4),
+  .standings-table td:nth-child(5),
+  .standings-table td:nth-child(6),
+  .standings-table td:nth-child(7),
+  .standings-table td:nth-child(8),
+  .standings-table td:nth-child(9) {
+    display: inline !important;
+    margin-right: 8px !important;
+  }
+
+  /* تسميات مختصرة */
+  .standings-table td:nth-child(3)::before { content: 'P '; opacity: 0.5; font-weight: 800; }
+  .standings-table td:nth-child(4)::before { content: 'W '; opacity: 0.5; font-weight: 800; }
+  .standings-table td:nth-child(5)::before { content: 'D '; opacity: 0.5; font-weight: 800; }
+  .standings-table td:nth-child(6)::before { content: 'L '; opacity: 0.5; font-weight: 800; }
+  .standings-table td:nth-child(7)::before { content: 'GF '; opacity: 0.5; font-weight: 800; }
+  .standings-table td:nth-child(8)::before { content: 'GA '; opacity: 0.5; font-weight: 800; }
+  .standings-table td:nth-child(9)::before { content: 'GD '; opacity: 0.5; font-weight: 800; }
+
+  /* GD aلوان */
+  .standings-table td.gd-pos { color: #22C55E !important; }
+  .standings-table td.gd-neg { color: #EF4444 !important; }
+
+  /* Legend */
+  .standings-legend {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    font-size: 11px !important;
+    padding: 12px !important;
+    border-radius: 12px !important;
+  }
+
+  .legend-item {
+    gap: 6px !important;
+    font-size: 11px !important;
+  }
+
+  .legend-dot {
+    width: 8px !important;
+    height: 8px !important;
+  }
+}
+
+/* =========================================================
+   RESULT ROW (Home page) — Vertical
+   ========================================================= */
+@media (max-width: 600px) {
+  .result-row {
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    grid-template-rows: auto auto !important;
+    gap: 8px 12px !important;
+    padding: 12px !important;
+    border-radius: 14px !important;
+  }
+
+  .result-row .result-date {
+    grid-column: 1 / -1 !important;
+    text-align: left !important;
+    font-size: 10.5px !important;
+    min-width: 0 !important;
+    padding-bottom: 8px !important;
+    margin-bottom: 4px !important;
+    border-bottom: 1px solid var(--bd-border) !important;
+    color: var(--bd-primary) !important;
+    font-weight: 700 !important;
+  }
+
+  .result-row .result-team {
+    gap: 8px !important;
+  }
+
+  .result-row .result-team-logo {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .result-row .result-team-name {
+    font-size: 12px !important;
+    font-weight: 700 !important;
+  }
+
+  .result-row .result-score {
+    font-size: 15px !important;
+    padding: 5px 12px !important;
+    grid-column: 2 !important;
+  }
+
+  /* إخفاء العنصر الفارغ */
+  .result-row > span:nth-child(4) {
+    display: none !important;
+  }
+}
+
+/* =========================================================
+   MATCH DETAILS PAGE
+   ========================================================= */
+@media (max-width: 768px) {
+  .match-hero {
+    padding: 22px 14px 18px !important;
+    border-radius: 14px !important;
+  }
+
+  .match-hero-main {
+    gap: 8px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .match-hero-logo {
+    width: 60px !important;
+    height: 60px !important;
+    padding: 10px !important;
+  }
+
+  .match-hero-team-name {
+    font-size: 12px !important;
+    max-width: 90px !important;
+  }
+
+  .match-hero-score {
+    font-size: clamp(28px, 9vw, 44px) !important;
+    gap: 8px !important;
+  }
+
+  .match-hero-actions {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+
+  .match-hero-actions .btn-bd {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .match-hero-meta {
+    gap: 12px !important;
+    font-size: 11px !important;
+  }
+
+  .match-tabs {
+    overflow-x: auto !important;
+    scrollbar-width: none;
+  }
+  .match-tabs::-webkit-scrollbar { display: none; }
+
+  .match-tab {
+    min-width: 100px !important;
+    padding: 10px 12px !important;
+    font-size: 12px !important;
+  }
+
+  .match-tab-panel { padding: 16px 12px !important; }
+}
+
+/* =========================================================
+   VIDEO PLAYER
+   ========================================================= */
+@media (max-width: 768px) {
+  .bd-player-wrap,
+  .match-player-wrap {
+    aspect-ratio: 16 / 9;
+    border-radius: 12px 12px 0 0 !important;
+  }
+
+  .bd-player-info { padding: 16px !important; }
+  .bd-player-info h3 { font-size: 15px !important; }
+
+  .bd-player-actions .btn-bd {
+    flex: 1 1 calc(50% - 3px) !important;
+    font-size: 11.5px !important;
+    padding: 10px !important;
+  }
+}
+
+/* =========================================================
+   MODALS
+   ========================================================= */
+@media (max-width: 768px) {
+  .bd-modal {
+    padding: 8px !important;
+    align-items: flex-end;
+  }
+
+  .bd-modal-panel {
+    border-radius: 18px 18px 0 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    max-height: 92vh !important;
+  }
+}
+
+/* =========================================================
+   FORMS
+   ========================================================= */
+@media (max-width: 768px) {
+  .form-grid,
+  .form-grid-2 {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .form-field input,
+  .form-field textarea,
+  .form-field select {
+    padding: 12px 14px !important;
+    font-size: 14px !important;
+  }
+
+  .contact-form-card { padding: 22px 16px !important; }
+}
+
+/* =========================================================
+   AUTH PAGES
+   ========================================================= */
+@media (max-width: 768px) {
+  .auth-shell { padding: 24px 12px 40px !important; }
+  .auth-card {
+    padding: 28px 20px !important;
+    border-radius: 18px !important;
+  }
+  .auth-title { font-size: 20px !important; }
+}
+
+/* =========================================================
+   ACCOUNT PAGE
+   ========================================================= */
+@media (max-width: 900px) {
+  .account-layout { grid-template-columns: 1fr !important; }
+  .account-side { position: relative !important; top: 0 !important; }
+
+  .account-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    gap: 6px !important;
+    padding: 8px !important;
+    scrollbar-width: none;
+  }
+  .account-nav::-webkit-scrollbar { display: none; }
+
+  .account-nav-link {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    padding: 10px 14px !important;
+    font-size: 12.5px !important;
+  }
+
+  .account-main { padding: 20px 14px !important; }
+}
+
+/* =========================================================
+   SUBSCRIPTION PLANS
+   ========================================================= */
+@media (max-width: 900px) {
+  .plans-grid { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 600px) {
+  .plan-card { padding: 24px 18px 20px !important; }
+  .plan-price-num { font-size: 28px !important; }
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+@media (max-width: 768px) {
+  .bd-footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  .bd-footer-bottom {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 10px !important;
+  }
+}
+
+/* =========================================================
+   BOTTOM NAV
+   ========================================================= */
+.bd-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: rgba(15, 15, 15, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--bd-border);
+  z-index: 850;
+  padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .bd-bottom-nav { display: flex !important; }
+  body { padding-bottom: 72px; }
+}
+
+.bd-bottom-nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: var(--bd-text-muted);
+  font-size: 9.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.18s;
+  padding: 8px 4px;
+  position: relative;
+}
+
+.bd-bottom-nav-item i { font-size: 18px; }
+.bd-bottom-nav-item.active { color: var(--bd-primary); }
+
+.bd-bottom-nav-item.active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 3px;
+  background: var(--bd-primary);
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 0 12px var(--bd-primary-glow);
+}
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+@media (max-width: 600px) {
+  .bd-pagination { gap: 4px !important; }
+  .pg-btn {
+    min-width: 34px !important;
+    height: 34px !important;
+    font-size: 12px !important;
+  }
+}
+
+/* =========================================================
+   NEWS TICKER
+   ========================================================= */
+@media (max-width: 600px) {
+  .news-ticker { height: 40px !important; }
+  .news-ticker-label {
+    padding: 0 10px !important;
+    font-size: 10px !important;
+  }
+  .news-ticker-item { font-size: 11.5px !important; }
+}
+
+/* =========================================================
+   RTL
+   ========================================================= */
+html[dir="rtl"] .bd-bottom-nav-item.active::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* =========================================================
+   MOBILE ONLY — Header + Bottom Nav + Language Bar
+   يطبق فقط على الجوال (≤ 768px) — لا يؤثر على الحاسوب
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /* ═══════════════════════════════════════════════════════
+     1. HEADER — الشعار في الوسط وأكبر على الجوال
+     ═══════════════════════════════════════════════════════ */
+
+  /* نستخدم position: absolute بدل grid — أقل تأثيراً */
+  .bd-header-inner {
+    position: relative !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+  }
+
+  /* الشعار: في الوسط تماماً */
+  .bd-header .bd-logo {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 2 !important;
+    pointer-events: auto !important;
+  }
+
+  /* الشعار أكبر */
+  .bd-header .bd-logo-img {
+    height: 42px !important;
+    max-width: 120px !important;
+  }
+
+  /* Burger على اليسار */
+  .bd-header .bd-burger {
+    position: relative !important;
+    z-index: 3 !important;
+    margin-right: auto !important;
+  }
+
+  /* Actions على اليمين */
+  .bd-header .bd-header-actions {
+    position: relative !important;
+    z-index: 3 !important;
+    margin-left: auto !important;
+  }
+
+  /* إخفاء اللغة العلوية على الجوال */
+  .bd-header .bd-lang {
+    display: none !important;
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     2. LANGUAGE BAR — فوق Bottom Nav
+     ═══════════════════════════════════════════════════════ */
+  .bd-lang-bar {
+    display: flex !important;
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     3. BOTTOM NAV — 6 أيقونات
+     ═══════════════════════════════════════════════════════ */
+  .bd-bottom-nav {
+    display: flex !important;
+  }
+
+  /* مسافة أسفل الصفحة */
+  body {
+    padding-bottom: 112px !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   على الجوال الصغير جداً
+   ═══════════════════════════════════════════════════════ */
+@media (max-width: 400px) {
+  .bd-header .bd-logo-img {
+    height: 38px !important;
+    max-width: 100px !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   Language Bar — العام (خارج Media Query)
+   ═══════════════════════════════════════════════════════ */
+.bd-lang-bar {
+  display: none;
+  position: fixed;
+  bottom: 64px;
+  left: 0;
+  right: 0;
+  height: 44px;
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--bd-border);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  z-index: 849;
+  padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.bd-lang-bar-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: var(--bd-text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  position: relative;
+  font-family: inherit;
+}
+
+.bd-lang-bar-item span {
+  letter-spacing: 0.5px;
+}
+
+.bd-lang-bar-item:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.bd-lang-bar-item.active {
+  color: var(--bd-primary);
+  background: rgba(162, 0, 199, 0.1);
+}
+
+.bd-lang-bar-item.active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 25%;
+  right: 25%;
+  height: 2px;
+  background: var(--bd-primary);
+  border-radius: 0 0 3px 3px;
+  box-shadow: 0 0 10px var(--bd-primary-glow);
+}
+
+/* ═══════════════════════════════════════════════════════
+   Bottom Nav — 6 أيقونات — تحسينات عامة
+   ═══════════════════════════════════════════════════════ */
+.bd-bottom-nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: var(--bd-text-muted);
+  font-size: 9px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.18s;
+  padding: 6px 2px;
+  position: relative;
+  min-width: 0;
+}
+
+.bd-bottom-nav-item i {
+  font-size: 17px;
+  line-height: 1;
+}
+
+.bd-bottom-nav-item span {
+  font-size: 9px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  padding: 0 2px;
+}
+
+.bd-bottom-nav-item.active {
+  color: var(--bd-primary);
+}
+
+.bd-bottom-nav-item.active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 3px;
+  background: var(--bd-primary);
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 0 12px var(--bd-primary-glow);
+}
+/* =========================================================
+   REPLAY CARDS — Mobile: smaller buttons
+   ========================================================= */
+@media (max-width: 768px) {
+
+  /* حجم الأزرار العام */
+  .replay-actions .btn-bd {
+    font-size: 10.5px !important;
+    padding: 8px 10px !important;
+    min-height: 34px !important;
+    border-radius: 8px !important;
+    gap: 4px !important;
+  }
+
+  .replay-actions .btn-bd i {
+    font-size: 10px !important;
+  }
+
+  /* زر الأيقونة (Share) */
+  .replay-actions .btn-bd-icon {
+    width: 34px !important;
+    height: 34px !important;
+    padding: 0 !important;
+  }
+
+  /* شبكة الأزرار — صف واحد مرتب */
+  .replay-actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 34px !important;
+    gap: 6px !important;
+  }
+
+  /* عند وجود 4 أزرار (WATCH + RESUME + DOWNLOAD + SHARE) */
+  .replay-actions:has(.js-resume) {
+    grid-template-columns: 1fr 1fr 34px !important;
+  }
+
+  /* على الجوال الصغير */
+  @media (max-width: 480px) {
+    .replay-actions .btn-bd {
+      font-size: 9.5px !important;
+      padding: 7px 8px !important;
+      min-height: 32px !important;
+      gap: 3px !important;
+    }
+
+    .replay-actions .btn-bd i {
+      font-size: 9px !important;
+    }
+
+    .replay-actions {
+      grid-template-columns: 1fr 1fr 32px !important;
+      gap: 5px !important;
+    }
+
+    .replay-actions .btn-bd-icon {
+      width: 32px !important;
+      height: 32px !important;
+    }
+  }
+}

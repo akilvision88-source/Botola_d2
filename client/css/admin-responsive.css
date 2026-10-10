@@ -1,0 +1,427 @@
+/* =========================================================
+   BOTOLA D2 — admin-responsive.css
+   Responsive للوحة التحكم (Sidebar + Tables + Modals)
+   ========================================================= */
+
+/* =========================================================
+   SIDEBAR — يختفي على الشاشات الصغيرة
+   ========================================================= */
+@media (max-width: 900px) {
+  .ad-sidebar {
+    transform: translateX(-100%) !important;
+    transition: transform 0.3s cubic-bezier(.22,.61,.36,1) !important;
+    box-shadow: 20px 0 60px rgba(0, 0, 0, 0.8) !important;
+    z-index: 200 !important;
+  }
+
+  .ad-sidebar.open {
+    transform: translateX(0) !important;
+  }
+
+  .ad-main {
+    margin-left: 0 !important;
+  }
+
+  .ad-burger {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ad-sidebar-overlay {
+    z-index: 150 !important;
+  }
+}
+
+/* =========================================================
+   TOPBAR — على الجوال
+   ========================================================= */
+@media (max-width: 900px) {
+  .ad-topbar {
+    padding: 0 14px !important;
+    height: 60px !important;
+    gap: 10px !important;
+  }
+
+  .ad-topbar-title {
+    font-size: 14px !important;
+    gap: 8px !important;
+  }
+
+  .ad-topbar-crumb { display: none; }
+  .ad-topbar-search { display: none !important; }
+
+  .ad-icon-btn { width: 36px !important; height: 36px !important; font-size: 14px !important; }
+
+  .ad-user-btn {
+    padding: 4px 10px 4px 4px !important;
+    font-size: 12px !important;
+  }
+  .ad-user-btn img { width: 26px !important; height: 26px !important; }
+  .ad-user-btn span { display: none; }
+}
+
+@media (max-width: 480px) {
+  .ad-topbar-title { font-size: 13px !important; }
+  .ad-icon-btn { width: 34px !important; height: 34px !important; }
+}
+
+/* =========================================================
+   CONTENT PADDING — على الجوال
+   ========================================================= */
+@media (max-width: 768px) {
+  .ad-content {
+    padding: 18px 12px 60px !important;
+  }
+
+  .ad-page-head {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+    margin-bottom: 18px !important;
+  }
+
+  .ad-page-title { font-size: 20px !important; }
+  .ad-page-sub { font-size: 12px !important; }
+
+  .ad-page-actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  .ad-page-actions .ad-btn {
+    justify-content: center !important;
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .ad-content { padding: 14px 10px 50px !important; }
+  .ad-page-title { font-size: 18px !important; }
+  .ad-page-actions { grid-template-columns: 1fr !important; }
+}
+
+/* =========================================================
+   STATS CARDS — على الجوال
+   ========================================================= */
+@media (max-width: 768px) {
+  .ad-stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    margin-bottom: 18px !important;
+  }
+
+  .ad-stat-card {
+    padding: 14px !important;
+    border-radius: 12px !important;
+  }
+
+  .ad-stat-icon {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 14px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .ad-stat-value { font-size: 20px !important; }
+  .ad-stat-label { font-size: 10px !important; letter-spacing: 0.5px !important; }
+}
+
+@media (max-width: 400px) {
+  .ad-stats-grid { grid-template-columns: 1fr !important; }
+}
+
+/* =========================================================
+   TABLES — على الجوال (Scroll أفقي)
+   ========================================================= */
+@media (max-width: 900px) {
+  .ad-card {
+    border-radius: 14px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .ad-card-head {
+    padding: 14px 16px !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  .ad-card-title { font-size: 13.5px !important; gap: 8px !important; }
+  .ad-card-body { padding: 16px !important; }
+
+  .ad-table-wrap {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    margin: 0;
+  }
+
+  .ad-table {
+    min-width: 720px !important;
+    font-size: 12.5px !important;
+  }
+
+  .ad-table thead th {
+    padding: 10px 12px !important;
+    font-size: 10px !important;
+    letter-spacing: 0.5px !important;
+  }
+
+  .ad-table tbody td {
+    padding: 10px 12px !important;
+    font-size: 12px !important;
+  }
+
+  .ad-avatar-cell img,
+  .ad-avatar-cell .initials {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 10px !important;
+  }
+
+  .ad-avatar-cell .name { font-size: 12px !important; }
+  .ad-avatar-cell .sub { font-size: 10px !important; }
+
+  .ad-logo-cell img,
+  .ad-logo-cell .logo-ph {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .ad-row-actions { gap: 4px !important; }
+  .ad-row-btn {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 11px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Scroll hint: gradient على اليمين */
+  .ad-table-wrap {
+    position: relative;
+  }
+  .ad-table-wrap::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    background: linear-gradient(to left, rgba(15, 15, 15, 0.85), transparent);
+    pointer-events: none;
+  }
+}
+
+/* =========================================================
+   MODALS — على الجوال
+   ========================================================= */
+@media (max-width: 768px) {
+  .ad-modal {
+    padding: 10px !important;
+    align-items: flex-end !important;
+  }
+
+  .ad-modal-panel {
+    max-width: 100% !important;
+    width: 100% !important;
+    border-radius: 20px 20px 0 0 !important;
+    max-height: 94vh !important;
+  }
+
+  .ad-modal-panel.lg { max-width: 100% !important; }
+
+  .ad-modal-head {
+    padding: 14px 16px !important;
+  }
+
+  .ad-modal-title { font-size: 14px !important; }
+
+  .ad-modal-close {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .ad-modal-body { padding: 16px !important; }
+
+  .ad-modal-foot {
+    padding: 14px 16px !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  .ad-modal-foot .ad-btn {
+    flex: 1 1 calc(50% - 4px) !important;
+  }
+}
+
+/* =========================================================
+   FORMS — داخل المودالات على الجوال
+   ========================================================= */
+@media (max-width: 768px) {
+  .ad-form { gap: 14px !important; }
+
+  .ad-form-grid,
+  .ad-form-grid-3 {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .ad-field label {
+    font-size: 11px !important;
+  }
+
+  .ad-field input,
+  .ad-field select,
+  .ad-field textarea {
+    padding: 10px 12px !important;
+    font-size: 13.5px !important;
+  }
+
+  /* iOS: منع zoom */
+  .ad-field input,
+  .ad-field select,
+  .ad-field textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* =========================================================
+   TABS — على الجوال
+   ========================================================= */
+@media (max-width: 768px) {
+  .result-tab,
+  .sub-tab,
+  .set-tab {
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+  }
+
+  /* Tabs scrollable */
+  .ad-content > div[style*="display:flex"][style*="border-bottom"] {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-wrap: nowrap !important;
+  }
+
+  .ad-content > div[style*="display:flex"][style*="border-bottom"]::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* =========================================================
+   CHARTS — على الجوال
+   ========================================================= */
+@media (max-width: 900px) {
+  .ad-two-col {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .ad-chart-wrap {
+    height: 220px !important;
+  }
+}
+
+/* =========================================================
+   UPLOAD PREVIEWS — على الجوال
+   ========================================================= */
+@media (max-width: 600px) {
+  .ad-upload {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+
+  .ad-upload-preview {
+    width: 100% !important;
+    height: 140px !important;
+  }
+
+  .ad-upload-input { width: 100% !important; }
+}
+
+/* =========================================================
+   PAGINATION — على الجوال
+   ========================================================= */
+@media (max-width: 600px) {
+  .ad-pagination { gap: 4px !important; padding-top: 12px !important; }
+
+  .ad-pg-btn {
+    min-width: 32px !important;
+    height: 32px !important;
+    font-size: 11.5px !important;
+    padding: 0 8px !important;
+  }
+}
+
+/* =========================================================
+   LOGIN PAGE — على الجوال
+   ========================================================= */
+@media (max-width: 480px) {
+  .ad-login-shell { padding: 20px 14px !important; }
+
+  .ad-login-card {
+    padding: 30px 22px !important;
+    border-radius: 18px !important;
+  }
+
+  .ad-login-brand { font-size: 20px !important; }
+  .ad-login-title { font-size: 12px !important; }
+}
+
+/* =========================================================
+   TOAST — على الجوال
+   ========================================================= */
+@media (max-width: 600px) {
+  .ad-toast-wrap {
+    left: 12px !important;
+    right: 12px !important;
+    bottom: 12px !important;
+    max-width: none !important;
+  }
+
+  .ad-toast {
+    padding: 12px 14px !important;
+    font-size: 12.5px !important;
+    border-radius: 10px !important;
+  }
+}
+
+/* =========================================================
+   RTL — على الجوال
+   ========================================================= */
+@media (max-width: 900px) {
+  html[dir="rtl"] .ad-sidebar {
+    transform: translateX(100%) !important;
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.8) !important;
+  }
+
+  html[dir="rtl"] .ad-sidebar.open {
+    transform: translateX(0) !important;
+  }
+
+  html[dir="rtl"] .ad-main { margin-right: 0 !important; }
+}
+
+/* =========================================================
+   TABLET — 769px → 1024px
+   ========================================================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .ad-main { margin-left: 220px !important; }
+  .ad-sidebar { width: 220px !important; }
+
+  .ad-stats-grid { grid-template-columns: repeat(4, 1fr) !important; }
+
+  .ad-two-col { grid-template-columns: 1fr !important; gap: 18px !important; }
+}
+
+/* =========================================================
+   LARGE SCREENS — 1920px+
+   ========================================================= */
+@media (min-width: 1920px) {
+  .ad-sidebar { width: 280px !important; }
+  .ad-main { margin-left: 280px !important; }
+  .ad-content { padding: 32px 40px 80px !important; max-width: 1800px; margin: 0 auto; }
+}

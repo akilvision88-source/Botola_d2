@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#A200C7" />
+  <title>Settings — BOTOLA D2 Admin</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body>
+
+  <div class="ad-layout" id="adLayout">
+    <aside class="ad-sidebar" id="adSidebar"></aside>
+    <div class="ad-sidebar-overlay" id="adSidebarOverlay"></div>
+
+    <div class="ad-main">
+      <header class="ad-topbar" id="adTopbar"></header>
+
+      <div class="ad-content">
+        <div class="ad-page-head">
+          <div>
+            <h1 class="ad-page-title">Settings</h1>
+            <p class="ad-page-sub">Configure your platform</p>
+          </div>
+          <div class="ad-page-actions">
+            <button class="ad-btn ad-btn-primary ad-btn-sm" id="saveAllBtn">
+              <i class="fa-solid fa-floppy-disk"></i> Save Changes
+            </button>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div style="display:flex;gap:6px;margin-bottom:20px;border-bottom:1px solid var(--ad-border);flex-wrap:wrap">
+          <button class="set-tab active" data-tab="general">General</button>
+          <button class="set-tab" data-tab="appearance">Appearance</button>
+          <button class="set-tab" data-tab="social">Social</button>
+          <button class="set-tab" data-tab="content">Content</button>
+        </div>
+
+        <form id="settingsForm">
+          <!-- GENERAL -->
+          <div class="set-panel" data-panel="general">
+            <div class="ad-card">
+              <div class="ad-card-head">
+                <h2 class="ad-card-title"><i class="fa-solid fa-circle-info"></i> General Information</h2>
+              </div>
+              <div class="ad-card-body">
+                <div class="ad-form-grid">
+                  <div class="ad-field">
+                    <label>Platform Name</label>
+                    <input type="text" name="platform_name" maxlength="80" />
+                  </div>
+                  <div class="ad-field">
+                    <label>Tagline</label>
+                    <input type="text" name="platform_tagline" maxlength="180" />
+                  </div>
+                </div>
+                <div class="ad-form-grid">
+                  <div class="ad-field">
+                    <label>Contact Email</label>
+                    <input type="email" name="contact_email" maxlength="150" />
+                  </div>
+                  <div class="ad-field">
+                    <label>Contact Phone</label>
+                    <input type="tel" name="contact_phone" maxlength="30" />
+                  </div>
+                </div>
+                <div class="ad-field">
+                  <label>Default Language</label>
+                  <select name="default_language">
+                    <option value="fr">Français</option>
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- APPEARANCE -->
+          <div class="set-panel" data-panel="appearance" style="display:none">
+            <div class="ad-card">
+              <div class="ad-card-head">
+                <h2 class="ad-card-title"><i class="fa-solid fa-palette"></i> Appearance</h2>
+              </div>
+              <div class="ad-card-body">
+                <div class="ad-form-grid">
+                  <div class="ad-field">
+                    <label>Primary Color</label>
+                    <div style="display:flex;gap:10px;align-items:center">
+                      <input type="color" name="primary_color" value="#A200C7" style="width:60px;height:44px;padding:4px" />
+                      <input type="text" name="primary_color_hex" placeholder="#A200C7" maxlength="9" />
+                    </div>
+                  </div>
+                  <div class="ad-field">
+                    <label>Secondary Color</label>
+                    <div style="display:flex;gap:10px;align-items:center">
+                      <input type="color" name="secondary_color" value="#363636" style="width:60px;height:44px;padding:4px" />
+                      <input type="text" name="secondary_color_hex" placeholder="#363636" maxlength="9" />
+                    </div>
+                  </div>
+                </div>
+                <div class="ad-form-grid">
+                  <div class="ad-field">
+                    <label>Logo URL</label>
+                    <input type="text" name="logo_url" maxlength="255" placeholder="/assets/images/logo.svg" />
+                  </div>
+                  <div class="ad-field">
+                    <label>Favicon URL</label>
+                    <input type="text" name="favicon_url" maxlength="255" placeholder="/assets/images/favicon.svg" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SOCIAL -->
+          <div class="set-panel" data-panel="social" style="display:none">
+            <div class="ad-card">
+              <div class="ad-card-head">
+                <h2 class="ad-card-title"><i class="fa-solid fa-share-nodes"></i> Social Links</h2>
+              </div>
+              <div class="ad-card-body">
+                <div class="ad-form-grid">
+                  <div class="ad-field">
+                    <label>Facebook URL</label>
+                    <input type="url" name="facebook_url" maxlength="255" placeholder="https://facebook.com/..." />
+                  </div>
+                  <div class="ad-field">
+                    <label>Instagram URL</label>
+                    <input type="url" name="instagram_url" maxlength="255" />
+                  </div>
+                </div>
+                <div class="ad-form-grid">
+                  <div class="ad-field">
+                    <label>YouTube URL</label>
+                    <input type="url" name="youtube_url" maxlength="255" />
+                  </div>
+                  <div class="ad-field">
+                    <label>TikTok URL</label>
+                    <input type="url" name="tiktok_url" maxlength="255" />
+                  </div>
+                </div>
+                <div class="ad-field">
+                  <label>X (Twitter) URL</label>
+                  <input type="url" name="x_url" maxlength="255" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONTENT -->
+          <div class="set-panel" data-panel="content" style="display:none">
+            <div class="ad-card">
+              <div class="ad-card-head">
+                <h2 class="ad-card-title"><i class="fa-solid fa-file-lines"></i> Content</h2>
+              </div>
+              <div class="ad-card-body">
+                <div class="ad-field">
+                  <label>About Text</label>
+                  <textarea name="about_text" rows="5" maxlength="3000"></textarea>
+                </div>
+                <div class="ad-field">
+                  <label>Footer Text</label>
+                  <textarea name="footer_text" rows="3" maxlength="1000"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="ad-toast-wrap" id="adToastWrap"></div>
+
+  <script src="/js/config.js"></script>
+  <script src="/js/admin/admin-api.js"></script>
+  <script src="/js/admin/admin-shell.js"></script>
+  <script src="/js/admin/settings.js"></script>
+</body>
+</html>

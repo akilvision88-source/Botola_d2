@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#A200C7" />
+  <title>Contact — BOTOLA D2</title>
+  <meta name="description" content="Contact BOTOLA D2 — questions, support, partnerships and press inquiries." />
+  <link rel="canonical" href="https://botolad2.com/contact" />
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/components.css?v=31" />
+  <link rel="stylesheet" href="/css/responsive.css?v=2" />
+  <link rel="stylesheet" href="/css/rtl.css" />
+</head>
+<body data-page="contact">
+
+  <!-- Header/Menu/BottomNav — injected by /js/header.js -->
+
+  <section class="bd-page-head">
+    <div class="container-xl">
+      <div class="bd-page-head-inner">
+        <div>
+          <div class="bd-page-crumb">
+            <a href="/" data-i18n="nav.home">Home</a> <span>/</span> <span data-i18n="nav.contact">Contact</span>
+          </div>
+          <h1 class="bd-page-title"><i class="fa-regular fa-envelope"></i> <span data-i18n="contact.title">Contact Us</span></h1>
+          <p class="bd-page-subtitle" data-i18n="contact.page_subtitle">Have a question, suggestion or partnership inquiry? We'd love to hear from you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bd-section" style="padding-top: 32px;">
+    <div class="container-xl">
+      <div class="contact-layout">
+
+        <!-- LEFT: FORM -->
+        <div class="contact-form-card">
+          <h2 class="contact-card-title" data-i18n="contact.form_title">Send us a message</h2>
+          <p class="contact-card-subtitle" data-i18n="contact.form_subtitle">We usually reply within 24–48 hours.</p>
+
+          <form id="contactForm" novalidate>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="cName" data-i18n="contact.name">Full name</label>
+                <input type="text" id="cName" name="name" required maxlength="120" autocomplete="name" />
+                <span class="form-error" data-error-for="name"></span>
+              </div>
+
+              <div class="form-field">
+                <label for="cEmail" data-i18n="contact.email">Email</label>
+                <input type="email" id="cEmail" name="email" required autocomplete="email" />
+                <span class="form-error" data-error-for="email"></span>
+              </div>
+
+              <div class="form-field">
+                <label for="cPhone" data-i18n="contact.phone">Phone <span class="optional">(optional)</span></label>
+                <input type="tel" id="cPhone" name="phone" autocomplete="tel" maxlength="30" />
+                <span class="form-error" data-error-for="phone"></span>
+              </div>
+
+              <div class="form-field">
+                <label for="cSubject" data-i18n="contact.subject">Subject</label>
+                <input type="text" id="cSubject" name="subject" required maxlength="200" />
+                <span class="form-error" data-error-for="subject"></span>
+              </div>
+
+              <div class="form-field form-field-full">
+                <label for="cMessage" data-i18n="contact.message">Message</label>
+                <textarea id="cMessage" name="message" rows="6" required maxlength="5000"></textarea>
+                <span class="form-error" data-error-for="message"></span>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-bd btn-bd-primary btn-bd-lg" id="contactSubmit">
+              <i class="fa-solid fa-paper-plane"></i> <span data-i18n="contact.send">SEND MESSAGE</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- RIGHT: INFO -->
+        <div class="contact-info">
+          <div class="contact-info-card">
+            <div class="contact-info-item">
+              <div class="contact-info-icon"><i class="fa-regular fa-envelope"></i></div>
+              <div>
+                <div class="contact-info-label" data-i18n="contact.email_label">Email</div>
+                <a href="mailto:contact@botolad2.com">contact@botolad2.com</a>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <div class="contact-info-icon"><i class="fa-solid fa-phone"></i></div>
+              <div>
+                <div class="contact-info-label" data-i18n="contact.phone_label">Phone</div>
+                <a href="tel:+212600000000">+212 600 000 000</a>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <div class="contact-info-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div>
+                <div class="contact-info-label" data-i18n="contact.address_label">Address</div>
+                <span>Casablanca, Morocco</span>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <div class="contact-info-icon"><i class="fa-regular fa-clock"></i></div>
+              <div>
+                <div class="contact-info-label" data-i18n="contact.hours_label">Working hours</div>
+                <span data-i18n="contact.hours">Mon – Fri · 9:00 – 18:00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-info-card contact-info-social">
+            <div class="contact-info-label" data-i18n="contact.follow">Follow us</div>
+            <div class="bd-social">
+              <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+              <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+              <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="bd-footer">
+    <div class="container-xl">
+      <div class="bd-footer-grid">
+        <div class="bd-footer-brand">
+          <span class="bd-logo">
+            <span class="bd-logo-mark">BOTOLA</span>
+            <span class="bd-logo-d2">D2</span>
+          </span>
+          <p class="bd-footer-desc" data-i18n="footer.about">BOTOLA D2 is a modern football streaming platform.</p>
+          <div class="bd-social">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+        </div>
+        <div class="bd-footer-col">
+          <h4 data-i18n="footer.nav">Navigation</h4>
+          <a href="/live" data-i18n="nav.live">Live</a>
+          <a href="/replay" data-i18n="nav.replay">Replay</a>
+          <a href="/results" data-i18n="nav.results">Results</a>
+          <a href="/standings" data-i18n="nav.standings">Standings</a>
+        </div>
+        <div class="bd-footer-col">
+          <h4 data-i18n="footer.platform">Platform</h4>
+          <a href="/subscription" data-i18n="nav.subscription">Subscription</a>
+          <a href="/about" data-i18n="nav.about">About</a>
+          <a href="/contact" data-i18n="nav.contact">Contact</a>
+          <a href="/login" data-i18n="nav.login">Login</a>
+        </div>
+        <div class="bd-footer-col">
+          <h4 data-i18n="footer.contact">Contact</h4>
+          <a href="mailto:contact@botolad2.com"><i class="fa-regular fa-envelope"></i> contact@botolad2.com</a>
+          <a href="tel:+212600000000"><i class="fa-solid fa-phone"></i> +212 600 000 000</a>
+          <span><i class="fa-solid fa-location-dot"></i> Casablanca, Morocco</span>
+        </div>
+      </div>
+      <div class="bd-footer-bottom">
+        <span>© <span id="year"></span> BOTOLA D2 — <span data-i18n="footer.rights">All rights reserved.</span></span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="bd-toast-wrap" id="toastWrap"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/config.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/share.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/header.js"></script>
+  <script src="/js/contact.js"></script>
+</body>
+</html>

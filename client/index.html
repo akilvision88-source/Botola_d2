@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#A200C7" />
+
+  <!-- SEO -->
+  <title>BOTOLA D2 — Live Football Streaming, Replays & Results</title>
+  <meta name="description" content="BOTOLA D2 — Watch live football matches, full replays, follow live scores, standings, results and premium content in HD." />
+  <meta name="keywords" content="Botola D2, football, live streaming, replay, results, standings, match live" />
+  <link rel="canonical" href="https://botolad2.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="BOTOLA D2 — Live Football Streaming" />
+  <meta property="og:description" content="Live matches, replays, results and standings — all in one place." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://botolad2.com/" />
+  <meta property="og:image" content="/assets/images/og-cover.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BOTOLA D2 — Live Football Streaming" />
+  <meta name="twitter:description" content="Live matches, replays, results and standings — all in one place." />
+  <meta name="twitter:image" content="/assets/images/og-cover.png" />
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
+  <link rel="apple-touch-icon" href="/assets/images/logo.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="mobile-web-app-capable" content="yes" />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/main.css?v=2" />
+  <link rel="stylesheet" href="/css/components.css?v=31" />
+  <link rel="stylesheet" href="/css/responsive.css?v=2" />
+  <link rel="stylesheet" href="/css/rtl.css" />
+</head>
+
+<body data-page="home">
+
+  <!-- ✅ Stadium Background -->
+  <div class="page-stadium-bg" aria-hidden="true"></div>
+  <div class="page-stadium-overlay" aria-hidden="true"></div>
+
+  <!-- ================= HEADER ================= -->
+  <header class="bd-header" id="bdHeader">
+    <div class="container-xl">
+      <div class="bd-header-inner">
+
+        <!-- ✅ LOGO (مصحّح) -->
+        <a href="/" class="bd-logo" aria-label="BOTOLA D2 Home">
+          <img src="/assets/images/logo.png"
+               alt="BOTOLA D2"
+               class="bd-logo-img"
+               onerror="this.onerror=null; this.src='/assets/images/logo-fallback.svg';">
+        </a>
+
+        <nav class="bd-nav" aria-label="Main navigation">
+          <a href="/" class="bd-nav-link active" data-i18n="nav.home">Home</a>
+          <a href="/live" class="bd-nav-link" data-i18n="nav.live">
+            <span class="live-dot"></span> <span data-i18n="nav.live">Live</span>
+          </a>
+          <a href="/upcoming" class="bd-nav-link" data-i18n="nav.upcoming">Upcoming</a>
+          <a href="/replay" class="bd-nav-link" data-i18n="nav.replay">Replay</a>
+          <a href="/results" class="bd-nav-link" data-i18n="nav.results">Results</a>
+          <a href="/standings" class="bd-nav-link" data-i18n="nav.standings">Standings</a>
+          <a href="/subscription" class="bd-nav-link" data-i18n="nav.subscription">Subscription</a>
+          <a href="/about" class="bd-nav-link" data-i18n="nav.about">About</a>
+          <a href="/contact" class="bd-nav-link" data-i18n="nav.contact">Contact</a>
+        </nav>
+
+        <div class="bd-header-actions">
+
+          <div class="bd-lang" id="langSwitcher">
+            <button class="bd-lang-btn" aria-haspopup="true" aria-expanded="false">
+              <i class="fa-solid fa-globe"></i>
+              <span class="bd-lang-current">FR</span>
+              <i class="fa-solid fa-chevron-down bd-lang-caret"></i>
+            </button>
+            <ul class="bd-lang-menu" role="menu">
+              <li><button data-lang="fr" role="menuitem">🇫🇷 Français</button></li>
+              <li><button data-lang="en" role="menuitem">🇬🇧 English</button></li>
+              <li><button data-lang="ar" role="menuitem">🇲🇦 العربية</button></li>
+            </ul>
+          </div>
+
+          <div id="guestActions" class="bd-auth-actions">
+            <a href="/login" class="btn-bd btn-bd-ghost" data-i18n="nav.login">Login</a>
+            <a href="/register" class="btn-bd btn-bd-primary" data-i18n="nav.register">Register</a>
+          </div>
+
+          <div id="userActions" class="bd-user" style="display:none;">
+            <button class="bd-user-btn" aria-haspopup="true" aria-expanded="false">
+              <img id="userAvatar" src="/assets/images/avatar-default.svg" alt="Avatar" />
+              <span id="userName">User</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <ul class="bd-user-menu">
+              <li><a href="/account"><i class="fa-regular fa-user"></i> <span data-i18n="nav.my_account">My Account</span></a></li>
+              <li><a href="/account#subscription"><i class="fa-regular fa-star"></i> <span data-i18n="nav.my_subscription">My Subscription</span></a></li>
+              <li><a href="/admin" id="adminLink" style="display:none;"><i class="fa-solid fa-shield-halved"></i> Admin</a></li>
+              <li><hr /></li>
+              <li><button id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> <span data-i18n="nav.logout">Logout</span></button></li>
+            </ul>
+          </div>
+
+          <button class="bd-burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MOBILE MENU ================= -->
+  <div class="bd-mobile-overlay" id="mobileOverlay"></div>
+  <aside class="bd-mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="bd-mobile-menu-head">
+      <span class="bd-logo">
+        <span class="bd-logo-mark">BOTOLA</span>
+        <span class="bd-logo-d2">D2</span>
+      </span>
+      <button class="bd-mobile-close" id="mobileClose" aria-label="Close menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <nav class="bd-mobile-nav">
+      <a href="/" data-i18n="nav.home">Home</a>
+      <a href="/live"><span class="live-dot"></span> <span data-i18n="nav.live">Live</span></a>
+      <a href="/upcoming" data-i18n="nav.upcoming">Upcoming</a>
+      <a href="/replay" data-i18n="nav.replay">Replay</a>
+      <a href="/results" data-i18n="nav.results">Results</a>
+      <a href="/standings" data-i18n="nav.standings">Standings</a>
+      <a href="/subscription" data-i18n="nav.subscription">Subscription</a>
+      <a href="/about" data-i18n="nav.about">About</a>
+      <a href="/contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <div class="bd-mobile-auth" id="mobileAuth"></div>
+  </aside>
+
+  <!-- ================= NEWS TICKER ================= -->
+  <div class="news-ticker" id="newsTicker" style="display:none">
+    <div class="news-ticker-label">
+      <i class="fa-solid fa-bolt"></i>
+      <span data-i18n="news.breaking">BREAKING</span>
+    </div>
+    <div class="news-ticker-track" id="newsTickerTrack"></div>
+  </div>
+
+  <!-- ================= HERO ================= -->
+  <section class="bd-hero">
+    <div class="bd-hero-bg"></div>
+    <div class="bd-hero-stadium"></div>
+    <div class="bd-hero-glow"></div>
+    <div class="container-xl">
+      <div class="bd-hero-content">
+        <span class="bd-hero-badge">
+          <span class="live-dot"></span>
+          <span data-i18n="hero.badge">Live now — Botola D2</span>
+        </span>
+        <h1 class="bd-hero-title">
+          <span class="bd-hero-title-top">BOTOLA</span>
+          <span class="bd-hero-title-bottom">D2</span>
+        </h1>
+        <p class="bd-hero-subtitle" data-i18n="hero.subtitle">
+          Watch live football matches, replays, standings and every moment of the Botola D2 season — in HD, anywhere, on any device.
+        </p>
+        <div class="bd-hero-actions">
+          <a href="/live" class="btn-bd btn-bd-primary btn-bd-lg">
+            <i class="fa-solid fa-play"></i> <span data-i18n="hero.watch_live">WATCH LIVE</span>
+          </a>
+          <a href="/upcoming" class="btn-bd btn-bd-outline btn-bd-lg">
+            <i class="fa-regular fa-calendar"></i> <span data-i18n="hero.view_matches">VIEW MATCHES</span>
+          </a>
+          <a href="/subscription" class="btn-bd btn-bd-gold btn-bd-lg">
+            <i class="fa-solid fa-star"></i> <span data-i18n="hero.subscribe">SUBSCRIBE NOW</span>
+          </a>
+        </div>
+
+        <div class="bd-hero-divider"></div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= REPLAY (5 cards row) ================= -->
+  <section class="bd-section" id="replaySection" style="display:none">
+    <div class="container-xl">
+      <div class="bd-section-head">
+        <div>
+          <h2 class="bd-section-title">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <span data-i18n="nav.replay">Replay</span>
+          </h2>
+          <p class="bd-section-subtitle" data-i18n="replay.page_subtitle">Watch full match replays in HD</p>
+        </div>
+        <a href="/replay" class="btn-bd btn-bd-ghost btn-bd-sm">
+          <span data-i18n="common.view_all">View all</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="home-grid-5" id="replayGridHome"></div>
+    </div>
+  </section>
+
+  <!-- ================= UPCOMING (5 cards row) ================= -->
+  <section class="bd-section" id="upcomingSection" style="display:none">
+    <div class="container-xl">
+      <div class="bd-section-head">
+        <div>
+          <h2 class="bd-section-title">
+            <i class="fa-regular fa-calendar"></i>
+            <span data-i18n="nav.upcoming">Upcoming</span>
+          </h2>
+          <p class="bd-section-subtitle" data-i18n="sections.upcoming_subtitle">Don't miss the next kickoffs</p>
+        </div>
+        <a href="/upcoming" class="btn-bd btn-bd-ghost btn-bd-sm">
+          <span data-i18n="common.view_all">View all</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="home-grid-5" id="upcomingGridHome"></div>
+    </div>
+  </section>
+
+  <!-- ================= RESULTS + STANDINGS ================= -->
+  <section class="bd-section" id="resultsSection">
+    <div class="container-xl">
+      <div class="bd-two-col">
+
+        <!-- Latest results -->
+        <div class="bd-two-col-main">
+          <div class="bd-section-head">
+            <div>
+              <h2 class="bd-section-title">
+                <i class="fa-solid fa-futbol"></i>
+                <span data-i18n="sections.results_title">Latest Results</span>
+              </h2>
+              <p class="bd-section-subtitle" data-i18n="sections.results_subtitle">Final scores from recent matches</p>
+            </div>
+            <a href="/results" class="btn-bd btn-bd-ghost btn-bd-sm">
+              <span data-i18n="common.view_all">View all</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+          <div class="bd-results-list" id="resultsList"></div>
+        </div>
+
+        <!-- Standings preview -->
+        <div class="bd-two-col-side">
+          <div class="bd-section-head">
+            <div>
+              <h2 class="bd-section-title">
+                <i class="fa-solid fa-ranking-star"></i>
+                <span data-i18n="sections.standings_title">Standings</span>
+              </h2>
+              <p class="bd-section-subtitle" data-i18n="sections.standings_subtitle">Top 6 clubs</p>
+            </div>
+          </div>
+          <div class="bd-standings-preview" id="standingsPreview"></div>
+          <a href="/standings" class="btn-bd btn-bd-primary btn-bd-block mt-3">
+            <span data-i18n="common.view_full_standings">VIEW FULL STANDINGS</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section class="bd-cta">
+    <div class="container-xl">
+      <div class="bd-cta-card">
+        <div class="bd-cta-glow"></div>
+        <h3 class="bd-cta-title" data-i18n="cta.title">Unlock the full Botola D2 experience</h3>
+        <p class="bd-cta-subtitle" data-i18n="cta.subtitle">
+          Live matches in HD, unlimited replays, downloads and premium content — only with a Gold subscription.
+        </p>
+        <a href="/subscription" class="btn-bd btn-bd-gold btn-bd-lg">
+          <i class="fa-solid fa-crown"></i> <span data-i18n="cta.button">UPGRADE TO GOLD</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bd-footer">
+    <div class="container-xl">
+      <div class="bd-footer-grid">
+
+        <div class="bd-footer-brand">
+          <span class="bd-logo">
+            <span class="bd-logo-mark">BOTOLA</span>
+            <span class="bd-logo-d2">D2</span>
+          </span>
+          <p class="bd-footer-desc" data-i18n="footer.about">
+            BOTOLA D2 is a modern football streaming platform — live matches, replays, results and standings in one place.
+          </p>
+          <div class="bd-social">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+        </div>
+
+        <div class="bd-footer-col">
+          <h4 data-i18n="footer.nav">Navigation</h4>
+          <a href="/live" data-i18n="nav.live">Live</a>
+          <a href="/replay" data-i18n="nav.replay">Replay</a>
+          <a href="/results" data-i18n="nav.results">Results</a>
+          <a href="/standings" data-i18n="nav.standings">Standings</a>
+        </div>
+
+        <div class="bd-footer-col">
+          <h4 data-i18n="footer.platform">Platform</h4>
+          <a href="/subscription" data-i18n="nav.subscription">Subscription</a>
+          <a href="/about" data-i18n="nav.about">About</a>
+          <a href="/contact" data-i18n="nav.contact">Contact</a>
+          <a href="/login" data-i18n="nav.login">Login</a>
+        </div>
+
+        <div class="bd-footer-col">
+          <h4 data-i18n="footer.contact">Contact</h4>
+          <a href="mailto:contact@botolad2.com"><i class="fa-regular fa-envelope"></i> contact@botolad2.com</a>
+          <a href="tel:+212600000000"><i class="fa-solid fa-phone"></i> +212 600 000 000</a>
+          <span><i class="fa-solid fa-location-dot"></i> Casablanca, Morocco</span>
+        </div>
+      </div>
+
+      <div class="bd-footer-bottom">
+        <span>© <span id="year"></span> BOTOLA D2 — <span data-i18n="footer.rights">All rights reserved.</span></span>
+        <span class="bd-footer-legal">
+          <a href="#" data-i18n="footer.privacy">Privacy</a>
+          <span>·</span>
+          <a href="#" data-i18n="footer.terms">Terms</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= BOTTOM NAV (Mobile only) ================= -->
+  <nav class="bd-bottom-nav" aria-label="Mobile navigation">
+    <a href="/" class="bd-bottom-nav-item" data-page="home">
+      <i class="fa-solid fa-house"></i>
+      <span data-i18n="nav.home">Home</span>
+    </a>
+    <a href="/live" class="bd-bottom-nav-item" data-page="live">
+      <i class="fa-solid fa-tv"></i>
+      <span data-i18n="nav.live">Live</span>
+    </a>
+    <a href="/upcoming" class="bd-bottom-nav-item" data-page="upcoming">
+      <i class="fa-regular fa-calendar"></i>
+      <span data-i18n="nav.upcoming">Matches</span>
+    </a>
+    <a href="/standings" class="bd-bottom-nav-item" data-page="standings">
+      <i class="fa-solid fa-ranking-star"></i>
+      <span data-i18n="nav.standings">Standings</span>
+    </a>
+    <a href="/account" class="bd-bottom-nav-item" data-page="account">
+      <i class="fa-regular fa-user"></i>
+      <span data-i18n="nav.my_account">Account</span>
+    </a>
+  </nav>
+
+  <div class="bd-toast-wrap" id="toastWrap"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/config.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/share.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/header.js"></script>
+  <script src="/js/home.js?v=15"></script>
+
+  <!-- Bottom nav active state -->
+  <script>
+    (function () {
+      const path = window.location.pathname.replace(/\/$/, '') || '/';
+      document.querySelectorAll('.bd-bottom-nav-item').forEach(item => {
+        const href = item.getAttribute('href').replace(/\/$/, '') || '/';
+        if (path === href) item.classList.add('active');
+      });
+    })();
+  </script>
+</body>
+</html>

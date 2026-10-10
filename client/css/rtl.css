@@ -1,0 +1,54 @@
+/* =========================================================
+   BOTOLA D2 — rtl.css
+   Applied when <html dir="rtl">
+   ========================================================= */
+
+html[dir="rtl"] body {
+  font-family: 'Cairo', 'Inter', system-ui, sans-serif;
+}
+
+html[dir="rtl"] .bd-hero-content { text-align: right; }
+html[dir="rtl"] .bd-hero-title { letter-spacing: 0; }
+html[dir="rtl"] .bd-hero-title-bottom { letter-spacing: 0; }
+html[dir="rtl"] .bd-hero-subtitle { margin-inline-start: 0; }
+
+html[dir="rtl"] .bd-header-inner { flex-direction: row; }
+html[dir="rtl"] .bd-nav { direction: rtl; }
+
+html[dir="rtl"] .bd-lang-menu { right: auto; left: 0; }
+html[dir="rtl"] .bd-user-menu { right: auto; left: 0; }
+
+html[dir="rtl"] .bd-mobile-menu {
+  right: auto;
+  left: 0;
+  border-left: none;
+  border-right: 1px solid var(--bd-border);
+  transform: translateX(-100%);
+}
+html[dir="rtl"] .bd-mobile-menu.open { transform: translateX(0); }
+
+html[dir="rtl"] .bd-section-title i { order: 2; }
+
+html[dir="rtl"] .bd-footer-col a,
+html[dir="rtl"] .bd-footer-col span { direction: rtl; }
+
+html[dir="rtl"] .bd-toast {
+  border-left: none;
+  border-right: 4px solid var(--bd-primary);
+}
+html[dir="rtl"] .bd-toast.success { border-right-color: var(--bd-success); border-left: none; }
+html[dir="rtl"] .bd-toast.error   { border-right-color: var(--bd-danger);  border-left: none; }
+html[dir="rtl"] .bd-toast.warn    { border-right-color: var(--bd-warning); border-left: none; }
+
+html[dir="rtl"] .bd-toast-wrap { right: auto; left: 20px; }
+
+html[dir="rtl"] .btn-bd i.fa-arrow-right { transform: scaleX(-1); }
+
+html[dir="rtl"] .result-team.right { flex-direction: row; }
+html[dir="rtl"] .result-team.right .result-team-name { text-align: left; }
+
+html[dir="rtl"] .standing-pts, 
+html[dir="rtl"] .standing-gd { text-align: left; }
+
+html[dir="rtl"] .bd-hero-stat-label,
+html[dir="rtl"] .bd-section-subtitle { text-align: right; }

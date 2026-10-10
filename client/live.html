@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#A200C7" />
+  <title>Live Matches — BOTOLA D2</title>
+  <meta name="description" content="Watch all live football matches on BOTOLA D2 — real-time scores, minute-by-minute updates." />
+  <link rel="canonical" href="https://botolad2.com/live" />
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/components.css?v=31" />
+  <link rel="stylesheet" href="/css/responsive.css?v=2" />
+  <link rel="stylesheet" href="/css/rtl.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hls.js@1.5.13/dist/hls.min.css" />
+</head>
+<body data-page="live">
+
+  <div class="page-stadium-bg" aria-hidden="true"></div>
+  <div class="page-stadium-overlay" aria-hidden="true"></div>
+
+  <!-- Header/Menu/BottomNav — injected by /js/header.js -->
+
+  <!-- ================= NEWS TICKER ================= -->
+  <div class="news-ticker" id="newsTicker" style="display:none">
+    <div class="news-ticker-label">
+      <i class="fa-solid fa-bolt"></i>
+      <span data-i18n="news.breaking">BREAKING</span>
+    </div>
+    <div class="news-ticker-track" id="newsTickerTrack"></div>
+  </div>
+
+  <!-- ================= PAGE HEADER ================= -->
+  <section class="bd-page-head">
+    <div class="container-xl">
+      <div class="bd-page-head-inner">
+        <div>
+          <div class="bd-page-crumb">
+            <a href="/" data-i18n="nav.home">Home</a> <span>/</span>
+            <span data-i18n="nav.live">Live</span>
+          </div>
+          <h1 class="bd-page-title">
+            <span class="live-dot"></span>
+            <span data-i18n="sections.live_title">Live Matches</span>
+          </h1>
+          <p class="bd-page-subtitle" data-i18n="live.page_subtitle">
+            All matches happening right now — real-time scores and minute-by-minute updates.
+          </p>
+        </div>
+        <div class="bd-page-meta">
+          <span class="bd-live-counter" id="liveCounter">
+            <span class="live-dot"></span> <span id="liveCountNum">0</span> <span data-i18n="live.live_now">live now</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LIVE GRID ================= -->
+  <section class="bd-section" style="padding-top: 24px;">
+    <div class="container-xl">
+      <div class="bd-grid bd-grid-live" id="liveGrid"></div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bd-footer">
+    <div class="container-xl">
+      <div class="bd-footer-grid">
+        <div class="bd-footer-brand">
+          <span class="bd-logo">
+            <span class="bd-logo-mark">BOTOLA</span>
+            <span class="bd-logo-d2">D2</span>
+          </span>
+          <p class="bd-footer-desc" data-i18n="footer.about">BOTOLA D2 is a modern football streaming platform.</p>
+          <div class="bd-social">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+        </div>
+        <div class="bd-footer-col">
+          <h4 data-i18n="footer.nav">Navigation</h4>
+          <a href="/live" data-i18n="nav.live">Live</a>
+          <a href="/replay" data-i18n="nav.replay">Replay</a>
+          <a href="/results" data-i18n="nav.results">Results</a>
+          <a href="/standings" data-i18n="nav.standings">Standings</a>
+        </div>
+        <div class="bd-footer-col">
+          <h4 data-i18n="footer.platform">Platform</h4>
+          <a href="/subscription" data-i18n="nav.subscription">Subscription</a>
+          <a href="/about" data-i18n="nav.about">About</a>
+          <a href="/contact" data-i18n="nav.contact">Contact</a>
+          <a href="/login" data-i18n="nav.login">Login</a>
+        </div>
+        <div class="bd-footer-col">
+          <h4 data-i18n="footer.contact">Contact</h4>
+          <a href="mailto:contact@botolad2.com"><i class="fa-regular fa-envelope"></i> contact@botolad2.com</a>
+          <a href="tel:+212600000000"><i class="fa-solid fa-phone"></i> +212 600 000 000</a>
+          <span><i class="fa-solid fa-location-dot"></i> Casablanca, Morocco</span>
+        </div>
+      </div>
+      <div class="bd-footer-bottom">
+        <span>© <span id="year"></span> BOTOLA D2 — <span data-i18n="footer.rights">All rights reserved.</span></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= LIVE VIDEO MODAL ================= -->
+  <div class="bd-modal" id="liveModal" aria-hidden="true">
+    <div class="bd-modal-backdrop" data-close-live-modal></div>
+    <div class="bd-modal-panel bd-modal-panel-lg">
+      <button class="bd-modal-close" data-close-live-modal aria-label="Close">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="bd-player-wrap">
+        <video id="liveVideo" class="bd-player" controls playsinline preload="metadata"></video>
+        <div class="bd-player-overlay" id="liveVideoLock" style="display:none">
+          <div class="bd-player-locked">
+            <i class="fa-solid fa-tv"></i>
+            <h3>Stream unavailable</h3>
+            <p>No stream URL configured for this match yet.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bd-player-info">
+        <h3 id="liveModalTitle">—</h3>
+        <div class="bd-player-meta" id="liveModalMeta"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= DETAILS MODAL ================= -->
+  <div class="bd-modal" id="detailsModal" aria-hidden="true">
+    <div class="bd-modal-backdrop" data-close-details-modal></div>
+    <div class="bd-modal-panel">
+      <button class="bd-modal-close" data-close-details-modal aria-label="Close">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="bd-modal-head" style="padding:20px 24px;border-bottom:1px solid var(--bd-border)">
+        <h3 class="bd-modal-title" style="font-size:16px;font-weight:800;margin:0;color:#fff">
+          <i class="fa-solid fa-circle-info" style="color:var(--bd-primary);margin-right:8px"></i>
+          Match Details
+        </h3>
+      </div>
+
+      <div class="bd-modal-body" id="detailsBody" style="padding:24px"></div>
+    </div>
+  </div>
+
+  <div class="bd-toast-wrap" id="toastWrap"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.13/dist/hls.min.js"></script>
+  <script src="/js/config.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/share.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/header.js"></script>
+  <script src="/js/player.js"></script>
+  <script src="/js/live.js?v=5"></script>
+</body>
+</html>

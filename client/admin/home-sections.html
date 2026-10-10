@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Sections — BOTOLA D2 Admin</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body>
+  <div class="ad-layout" id="adLayout">
+    <aside class="ad-sidebar" id="adSidebar"></aside>
+    <div class="ad-sidebar-overlay" id="adSidebarOverlay"></div>
+
+    <div class="ad-main">
+      <header class="ad-topbar" id="adTopbar"></header>
+
+      <div class="ad-content">
+        <div class="ad-page-head">
+          <div>
+            <h1 class="ad-page-title">Home Sections</h1>
+            <p class="ad-page-sub">Control visibility, order, and content of home page carousels</p>
+          </div>
+          <div class="ad-page-actions">
+            <button class="ad-btn ad-btn-ghost ad-btn-sm" id="refreshBtn">
+              <i class="fa-solid fa-rotate"></i> Refresh
+            </button>
+          </div>
+        </div>
+
+        <div class="ad-card">
+          <div class="ad-card-body" style="padding:14px 20px;background:rgba(162,0,199,0.06);border-bottom:1px solid var(--ad-border)">
+            <div style="display:flex;align-items:center;gap:12px;font-size:13px;color:var(--bd-text-muted)">
+              <i class="fa-solid fa-circle-info" style="color:var(--bd-primary)"></i>
+              <span>
+                Each section can be <strong style="color:#fff">shown/hidden</strong>, reordered, and configured.
+                Changes appear immediately on the home page.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div id="sectionsGrid" class="ad-stats-grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
+          <div class="ad-skeleton" style="height:260px;border-radius:16px"></div>
+          <div class="ad-skeleton" style="height:260px;border-radius:16px"></div>
+          <div class="ad-skeleton" style="height:260px;border-radius:16px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div class="ad-modal" id="sectionModal">
+    <div class="ad-modal-backdrop" data-modal-close></div>
+    <div class="ad-modal-panel">
+      <div class="ad-modal-head">
+        <h3 class="ad-modal-title" id="sectionModalTitle">Edit Section</h3>
+        <button class="ad-modal-close" data-modal-close><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="sectionForm" class="ad-form" style="padding:22px">
+        <input type="hidden" name="key" id="sectionKey" />
+
+        <div class="ad-field">
+          <label>Title</label>
+          <input type="text" name="title" maxlength="120" placeholder="e.g. Live Matches" />
+        </div>
+
+        <div class="ad-field">
+          <label>Subtitle</label>
+          <input type="text" name="subtitle" maxlength="200" placeholder="e.g. Matches happening right now" />
+        </div>
+
+        <div class="ad-form-grid">
+          <div class="ad-field">
+            <label>Display Order</label>
+            <input type="number" name="display_order" min="0" value="0" />
+          </div>
+          <div class="ad-field">
+            <label>Items Limit</label>
+            <input type="number" name="items_limit" min="1" max="20" value="8" />
+          </div>
+        </div>
+
+        <div class="ad-form-grid">
+          <div class="ad-field">
+            <label>"View All" URL</label>
+            <input type="text" name="view_all_url" maxlength="200" placeholder="/live" />
+          </div>
+          <div class="ad-field">
+            <label>"View All" Text</label>
+            <input type="text" name="view_all_text" maxlength="100" placeholder="View all" />
+          </div>
+        </div>
+
+        <div class="ad-field">
+          <label>Visibility</label>
+          <select name="is_visible">
+            <option value="1">✅ Visible</option>
+            <option value="0">❌ Hidden</option>
+          </select>
+        </div>
+
+        <div style="display:flex;justify-content:flex-end;gap:10px;padding-top:10px;border-top:1px solid var(--ad-border)">
+          <button type="button" class="ad-btn ad-btn-ghost" data-modal-close>Cancel</button>
+          <button type="submit" class="ad-btn ad-btn-primary" id="saveBtn">
+            <i class="fa-solid fa-floppy-disk"></i> Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="ad-toast-wrap" id="adToastWrap"></div>
+
+  <script src="/js/config.js"></script>
+  <script src="/js/admin/admin-api.js"></script>
+  <script src="/js/admin/admin-shell.js"></script>
+  <script>
+    let sections = [];
+
+    const SECTION_ICONS = {
+      live: 'fa-tv',
+      replay: 'fa-clock-rotate-left',
+      upcoming: 'fa-calendar-day',
+      results: 'fa-futbol',
+      standings: 'fa-ranking-star'
+    };
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await AdminShell.mount('home-sections', 'Home Sections');
+      if (!user) return;
+
+      document.getElementById('refreshBtn').addEventListener('click', loadSections);
+      document.getElementById('sectionForm').addEventListener('submit', onSave);
+
+      loadSections();
+    });
+
+    async function loadSections() {
+      const grid = document.getElementById('sectionsGrid');
+      grid.innerHTML = `<div class="ad-skeleton" style="height:260px;border-radius:16px"></div>`;
+
+      try {
+        const res = await fetch('/api/home-sections?_t=' + Date.now(), {
+          headers: { 'Authorization': 'Bearer ' + localStorage.getItem('bd_access_token') }
+        }).then(r => r.json());
+
+        sections = res?.data || [];
+
+        if (!sections.length) {
+          grid.innerHTML = `<div class="ad-empty" style="grid-column:1/-1"><i class="fa-solid fa-layer-group"></i><h3>No sections</h3></div>`;
+          return;
+        }
+
+        grid.innerHTML = sections.map(s => {
+          const icon = SECTION_ICONS[s.section_key] || 'fa-square';
+          return `
+            <div class="ad-stat-card" style="padding:22px">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">
+                <div class="ad-stat-icon" style="background:rgba(162,0,199,0.15);color:var(--bd-primary)">
+                  <i class="fa-solid ${icon}"></i>
+                </div>
+                ${s.is_visible
+                  ? '<span class="ad-pill active">VISIBLE</span>'
+                  : '<span class="ad-pill finished">HIDDEN</span>'}
+              </div>
+
+              <div style="font-size:11px;color:var(--bd-text-dim);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:6px">
+                ${s.section_key}
+              </div>
+              <div style="font-size:17px;font-weight:800;color:#fff;margin-bottom:6px">
+                ${AdUtil.esc(s.title || '—')}
+              </div>
+              <div style="font-size:12px;color:var(--bd-text-muted);margin-bottom:16px;min-height:32px">
+                ${AdUtil.esc(s.subtitle || '—')}
+              </div>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px;background:var(--ad-bg-2);border-radius:10px;margin-bottom:16px">
+                <div>
+                  <div style="font-size:10px;color:var(--bd-text-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px">Order</div>
+                  <div style="font-size:15px;font-weight:800;color:#fff">${s.display_order}</div>
+                </div>
+                <div>
+                  <div style="font-size:10px;color:var(--bd-text-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px">Limit</div>
+                  <div style="font-size:15px;font-weight:800;color:#fff">${s.items_limit}</div>
+                </div>
+              </div>
+
+              <button class="ad-btn ad-btn-ghost ad-btn-block ad-btn-sm" data-edit="${s.section_key}">
+                <i class="fa-solid fa-pen"></i> Edit Section
+              </button>
+            </div>
+          `;
+        }).join('');
+
+        grid.querySelectorAll('[data-edit]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const key = btn.getAttribute('data-edit');
+            const s = sections.find(x => x.section_key === key);
+            if (s) openModal(s);
+          });
+        });
+      } catch (err) {
+        grid.innerHTML = `<div class="ad-empty" style="grid-column:1/-1"><i class="fa-solid fa-triangle-exclamation"></i><h3>Failed to load</h3></div>`;
+      }
+    }
+
+    function openModal(s) {
+      const form = document.getElementById('sectionForm');
+      form.reset();
+
+      document.getElementById('sectionModalTitle').textContent = 'Edit: ' + s.section_key.toUpperCase();
+      document.getElementById('sectionKey').value = s.section_key;
+
+      form.title.value = s.title || '';
+      form.subtitle.value = s.subtitle || '';
+      form.display_order.value = s.display_order || 0;
+      form.items_limit.value = s.items_limit || 8;
+      form.view_all_url.value = s.view_all_url || '';
+      form.view_all_text.value = s.view_all_text || '';
+      form.is_visible.value = s.is_visible ? '1' : '0';
+
+      AdUtil.openModal('sectionModal');
+    }
+
+    async function onSave(e) {
+      e.preventDefault();
+      const form = e.currentTarget;
+      const key = form.key.value;
+
+      const payload = {
+        title: form.title.value.trim(),
+        subtitle: form.subtitle.value.trim(),
+        display_order: parseInt(form.display_order.value, 10) || 0,
+        items_limit: parseInt(form.items_limit.value, 10) || 8,
+        view_all_url: form.view_all_url.value.trim(),
+        view_all_text: form.view_all_text.value.trim(),
+        is_visible: form.is_visible.value === '1'
+      };
+
+      const btn = document.getElementById('saveBtn');
+      const orig = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Saving...';
+
+      try {
+        const res = await fetch('/api/home-sections/' + key, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('bd_access_token')
+          },
+          body: JSON.stringify(payload)
+        }).then(r => r.json());
+
+        if (!res.success) throw new Error(res.message);
+
+        AdToast.success('Section updated');
+        AdUtil.closeModal('sectionModal');
+        loadSections();
+      } catch (err) {
+        AdToast.error(err.message || 'Save failed');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = orig;
+      }
+    }
+  </script>
+</body>
+</html>
